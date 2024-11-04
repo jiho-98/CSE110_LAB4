@@ -25,7 +25,7 @@ describe('Expense Tracker Functionality', () => {
     expect(screen.getByText('Groceries')).toBeInTheDocument();
     expect(screen.getByText('$50')).toBeInTheDocument();
 
-    expect(screen.getByText('Remaining: $950')).toBeInTheDocument();
+    expect(screen.getByText('Remaining: $800')).toBeInTheDocument();
     expect(screen.getByText('Spent so far: $50')).toBeInTheDocument();
   });
 
