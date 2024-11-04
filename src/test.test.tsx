@@ -14,8 +14,8 @@ describe('Expense Tracker Functionality', () => {
     );
 
     // Simulate adding an expense
-    const nameInput = screen.getByPlaceholderText('Enter name of expense');
-    const costInput = screen.getByPlaceholderText('Enter cost');
+    const nameInput = screen.getByLabelText('Name'); // Label로 검색
+    const costInput = screen.getByLabelText('Cost');
     const saveButton = screen.getByText('Save');
 
     fireEvent.change(nameInput, { target: { value: 'Groceries' } });
@@ -25,7 +25,7 @@ describe('Expense Tracker Functionality', () => {
     expect(screen.getByText('Groceries')).toBeInTheDocument();
     expect(screen.getByText('$50')).toBeInTheDocument();
 
-    expect(screen.getByText('Remaining: $800')).toBeInTheDocument();
+    expect(screen.getByText('Remaining: $950')).toBeInTheDocument();
     expect(screen.getByText('Spent so far: $50')).toBeInTheDocument();
   });
 
@@ -38,8 +38,8 @@ describe('Expense Tracker Functionality', () => {
     );
 
     // Add first expense
-    const nameInput = screen.getByPlaceholderText('Enter name of expense');
-    const costInput = screen.getByPlaceholderText('Enter cost');
+    const nameInput = screen.getByLabelText('Name');
+    const costInput = screen.getByLabelText('Cost');
     const saveButton = screen.getByText('Save');
 
     fireEvent.change(nameInput, { target: { value: 'Groceries' } });
@@ -69,16 +69,15 @@ describe('Expense Tracker Functionality', () => {
     );
 
     // Add an expense
-    const nameInput = screen.getByPlaceholderText('Enter name of expense');
-    const costInput = screen.getByPlaceholderText('Enter cost');
+    const nameInput = screen.getByLabelText('Name');
+    const costInput = screen.getByLabelText('Cost');
     const saveButton = screen.getByText('Save');
 
     fireEvent.change(nameInput, { target: { value: 'Groceries' } });
     fireEvent.change(costInput, { target: { value: '50' } });
     fireEvent.click(saveButton);
 
-    
-    const deleteButton = screen.getByText('Delete');
+    const deleteButton = screen.getByText('x'); // 삭제 버튼 'x'로 수정
     fireEvent.click(deleteButton);
 
     expect(screen.queryByText('Groceries')).not.toBeInTheDocument();
@@ -87,7 +86,7 @@ describe('Expense Tracker Functionality', () => {
     expect(screen.getByText('Spent so far: $0')).toBeInTheDocument();
   });
 
-  // test Budget Balance Verification
+  // Budget Balance Verification Test
   test('should validate the budget balance equation after adding expenses', () => {
     render(
       <AppProvider>
@@ -98,8 +97,8 @@ describe('Expense Tracker Functionality', () => {
     const initialBudget = 1000;
 
     // Add an expense
-    const nameInput = screen.getByPlaceholderText('Enter name of expense');
-    const costInput = screen.getByPlaceholderText('Enter cost');
+    const nameInput = screen.getByLabelText('Name');
+    const costInput = screen.getByLabelText('Cost');
     const saveButton = screen.getByText('Save');
 
     fireEvent.change(nameInput, { target: { value: 'Groceries' } });
